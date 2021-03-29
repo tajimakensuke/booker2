@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
   devise_for :users
-  root to: 'post_books#index'
+  root to: 'homes#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  resource :post_books, only: [:new, :create, :index, :show, :destroy]
-  resource :user, only: [:show, :edit, :update]
+  resources :books, only: [:new, :create, :index, :show, :destroy]
+  resources :users, only: [:index, :show, :edit, :update, :destroy]
+  resources :homes, only: [:index]
+  resources :abouts, only: [:index]
 end

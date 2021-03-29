@@ -1,2 +1,0 @@
-class PostBooksController < ApplicationController
-end
