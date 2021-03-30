@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-4">
+      <h2>User Info</h2>
+
+      <div class="profile_image border-bottom p-3"><%= attachment_image_tag current_user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
+      </div>
+      <h5 class="profile-name border-bottom p-3">name: <%= current_user.name %></h5>
+      <h5 class="introduction">introduction: <%= current_user.name %></h5>
+
+    <button type="button" class="btn btn-success btn-block mb-3">
+    <%= link_to "edit", edit_user_path(current_user), class:'nav-link text-dark' %>
+    </button>
+
+    <div class="create">
+    <%= form_with model:Book.new, local:true do |f| %>
+    <div class="newbook">
+      <h2>New Book</h2>
+      <%= f.label :title %>
+      <div>
+        <%= f.text_field :book_title %>
+      </div>
+
+      <%= f.label :opinion %>
+      <div>
+        <%= f.text_area :opinion %>
+      </div>
+      <%= f.submit nil, class: "btn btn-success btn-block mb-3 nav-link text-dark" "Create Book" %>
+
+    </div>
+    <% end %>
+  </div>
+</div>
