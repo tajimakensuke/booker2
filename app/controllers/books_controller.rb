@@ -23,8 +23,8 @@ def index
 end
 
 def show
-    @user = User.find(params[:id])
     @book = Book.find(params[:id])
+    @user = User.find_by(id: @book.user_id)
 end
 
 def destroy
