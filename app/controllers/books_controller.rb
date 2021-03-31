@@ -13,7 +13,6 @@ def create
     else
       render action: :index
     end
-
 end
 
 def index
@@ -27,7 +26,19 @@ def show
     @user = User.find_by(id: @book.user_id)
 end
 
+def edit
+  @book = Book.find(params[:id])
+end
+
+def update
+  @book = Book.find(params[:id])
+  @book.update(book_params)
+    redirect_to book_path
+end
+
 def destroy
+   PostComment.find_by(id: params[:id], post_image_id: params[:post_image_id]).destroy
+   redirect_to post_image_path(params[:post_image_id])
 end
 
  private
