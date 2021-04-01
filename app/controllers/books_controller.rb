@@ -8,7 +8,7 @@ def create
     @book.user_id = current_user.id
 
     if @book.save
-      flash[:notice] = "Book was successfully created."
+      flash[:notice] = "You have created book successfully."
       redirect_to books_path
     else
       render action: :index
@@ -32,13 +32,17 @@ end
 
 def update
   @book = Book.find(params[:id])
-  @book.update(book_params)
+
+  if @book.update(book_params)
+    flash[:notice] = "You have updated book successfully."
     redirect_to book_path
+  end
 end
 
 def destroy
-   PostComment.find_by(id: params[:id], post_image_id: params[:post_image_id]).destroy
-   redirect_to post_image_path(params[:post_image_id])
+    @book = Book.find(params[:id])
+    @book.destroy
+    redirect_to books_path
 end
 
  private

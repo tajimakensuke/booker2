@@ -11,8 +11,11 @@
     <label for="inputOpinion">Opinion</label>
     <%= f.text_area :opinion, autofocus: true, id:"inputIntroduction", placeholder:  "@book.opinion"  %>
   </div>
-  <%= f.submit "変更を保存" %>
+  <%= f.submit "Update Bo" %>
 <% end %>
+
+<%= link_to "show", book_path %>
+<%= link_to "back", books_path %>
 
     </div>
   </div>
