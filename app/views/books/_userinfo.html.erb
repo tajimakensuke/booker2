@@ -1,9 +1,14 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-4">
-      <% if flash[:notice] %>
+
+      <div class= "text-success" ><% if flash[:notice] %>
             <p><%= flash[:notice] %></p>
       <% end %>
+      </div>
+
+
+
       <h2>User Info</h2>
 
       <div class="profile_image border-bottom p-3"><%= attachment_image_tag current_user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>

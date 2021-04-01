@@ -36,6 +36,8 @@ def update
   if @book.update(book_params)
     flash[:notice] = "You have updated book successfully."
     redirect_to book_path
+  else
+    render action: :edit
   end
 end
 

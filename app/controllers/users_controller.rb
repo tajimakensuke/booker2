@@ -18,7 +18,7 @@ def create
       flash[:notice] = "Book was successfully created."
       redirect_to books_path
     else
-      render action: :index
+      render  action: :create
     end
 end
 
@@ -32,6 +32,8 @@ def update
   if @user.update(user_params)
     flash[:notice] = "You have updated user successfully."
     redirect_to user_path(@user.id)
+  else
+    render action: :edit
   end
 end
 

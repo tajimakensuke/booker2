@@ -1,6 +1,21 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-5">
+
+    <div class ="text-danger">
+      <% if @book.errors.any? %>
+      <div class="render">
+      <p class="erroor_message"><%= @book.errors.count %> error prohibited this book from being saved:</p>
+        <ul>
+      <% @book.errors.full_messages.each do |message| %>
+        <li>・<%= message %></li>
+      <% end %>
+        </ul>
+      </div>
+      <% end %>
+    </div>
+
+
 <h2>Editing book</h2>
 <%= form_with model:@book, local:true do |f| %>
   <div>
