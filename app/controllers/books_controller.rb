@@ -1,4 +1,7 @@
 class BooksController < ApplicationController
+  before_action :authenticate_user!,except: [:top]
+
+  before_action :baria_user, only: [:edit, :destroy, :update]
 
 def new
 end
@@ -6,10 +9,11 @@ end
 def create
     @book = Book.new(book_params)
     @book.user_id = current_user.id
+    @user = current_user
 
     if @book.save
       flash[:notice] = "You have created book successfully."
-      redirect_to books_path
+      redirect_to book_path(@book.id)
     else
       render action: :index
     end
@@ -35,7 +39,7 @@ def update
 
   if @book.update(book_params)
     flash[:notice] = "You have updated book successfully."
-    redirect_to book_path
+    redirect_to book_path(@book.id)
   else
     render action: :edit
   end
@@ -53,7 +57,13 @@ def user_params
   params.require(:user).permit(:name, :profile_image)
 end
 def book_params
-  params.require(:book).permit(:book_title, :opinion)
+  params.require(:book).permit(:title, :body)
+end
+
+def baria_user
+  unless Book.find(params[:id]).user.id.to_i == current_user.id
+  redirect_to books_path
+  end
 end
 
 end

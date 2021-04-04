@@ -1,39 +1,52 @@
+<div class= "text-success" ><% if flash[:notice] %>
+  <p><%= flash[:notice] %></p>
+  <% end %>
+</div>
+
+
+    <div class ="text-danger">
+      <% if @book.errors.any? %>
+      <div class="render">
+      <p class="erroor_message"><%= @book.errors.count %> error prohibited this book from being saved:</p>
+        <ul>
+      <% @book.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+        </ul>
+      </div>
+      <% end %>
+    </div>
+
+
 <div class="container">
   <div class="row">
-    <div class="col-lg-4">
-
-      <div class= "text-success" ><% if flash[:notice] %>
-            <p><%= flash[:notice] %></p>
-      <% end %>
-      </div>
-
-
+    <div class="col-md-3">
 
       <h2>User Info</h2>
 
-      <div class="profile_image border-bottom p-3"><%= attachment_image_tag current_user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
+      <div class="profile_image border-bottom p-3"><%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
       </div>
-      <h5 class="profile-name border-bottom p-3">name: <%= current_user.name %></h5>
-      <h5 class="introduction">introduction: <%= current_user.introduction %></h5>
+      <h5 class="profile-name border-bottom p-3">name: <%= @user.name %></h5>
+      <h5 class="introduction">introduction: <%= @user.introduction %></h5>
 
-    <button type="button" class="btn btn-success btn-block mb-3">
-    <%= link_to "edit", edit_user_path(current_user), class:'nav-link text-white' %>
-    </button>
+      <button type="button" class="btn btn-link btn-block mb-3 btn btn-outline-dark">
+      <%= link_to "", edit_user_path(@user), class:'fas fa-user-cog text-secondary' %>
+      </button>
 
     <div class="create">
     <%= form_with model:Book.new, local:true do |f| %>
     <div class="newbook">
-      <h2>New Book</h2>
+      <h2>New book</h2>
       <%= f.label :title %>
       <div>
-        <%= f.text_field :book_title %>
+        <%= f.text_field :title %>
       </div>
 
       <%= f.label :opinion %>
       <div>
-        <%= f.text_area :opinion %>
+        <%= f.text_area :body %>
       </div>
-      <%= f.submit nil, class: "btn btn-success btn-block mb-3 nav-link " "Create Book" %>
+      <%= f.submit "Create Book", class: 'btn btn-success btn-block mb-3' %>
 
     </div>
     <% end %>
