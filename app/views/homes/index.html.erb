@@ -1,0 +1,36 @@
+<body>
+  <div class= "text-success" ><% if flash[:notice] %>
+            <p><%= flash[:notice] %></p>
+      <% end %>
+  </div>
+
+  <div class="container">
+    <div class="mx-auto col-11 col-sm-10 col-lg-8 col-xl-6">
+    <div class="text-center">
+  <h1 class="mx-auto text-left" style="width: auto;">welcome to<i class="fas fa-book"></i>
+  <strong>Bookers !!</strong>
+  </h1>
+  <h6 class="mx-auto text-left" style="width: auto;">In<i class="fas fa-book "></i>Bookers,</br>
+you can share and exchange your opinions , inpressions , and emotions</br>
+about various books!</h6>
+
+
+<div class="row">
+  <button type="button" class="btn btn-success btn-block m-5 mx-5 ">
+  <div class="text-center">
+    <%= link_to "Log in", new_user_session_path, class:'nav-link text-white' %>
+  </div>
+  </button>
+</div>
+
+<div class="row">
+  <button type="button" class="btn btn-info btn-block mb-3 mx-5 ">
+    <div class="text-center">
+    <%= link_to "Sign up", new_user_registration_path, class:'nav-link text-white' %>
+    </div>
+  </button>
+</div>
+    </div>
+    </div>
+  </div>
+</body>
